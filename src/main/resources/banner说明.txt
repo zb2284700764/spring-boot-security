@@ -1,0 +1,27 @@
+
+banner 可以是  .jpg .gif .png 的图片或者 .txt 文件，如果都没有就用 SpringBootBanner 自带的 banner
+也可以通过 Banner.Mode.OFF 关闭 banner
+
+AnsiColor： 用来设定字符的前景色
+AnsiBackground： 用来设定字符的背景色
+AnsiStyle： 用来控制加粗、斜体、下划线等等。
+
+
+${AnsiColor.BRIGHT_YELLOW}：设置输出文字的颜色，配置位于 org.springframework.boot.ansi.AnsiColor 枚举内
+颜色设置之后，后面的都是这个颜色
+
+${AnsiBackground.BRIGHT_RED}：设置输出的背景颜色，配置位于 org.springframework.boot.ansi.AnsiBackground 枚举内
+
+${AnsiBackground.BRIGHT_RED}：设置字体粗体、斜体等，配置位于 org.springframework.boot.ansi.AnsiStyle 枚举内
+
+${application.version}：用来获取 MANIFEST.MF 文件中的版本号 比如1.5.4.RELEASE
+
+${application.formatted-version}：格式化后的${application.version}版本信息 就是加个v然后用括号包起来，比如(v1.5.4.RELEASE)
+
+${spring-boot.version}：Spring Boot的版本号
+
+${spring-boot.formatted-version}：格式化后的${spring-boot.version}版本信息
+
+
+${application.title}：还不知道有什么用
+

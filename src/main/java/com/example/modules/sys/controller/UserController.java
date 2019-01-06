@@ -1,10 +1,11 @@
-package com.example.module.test.controller;
+package com.example.modules.sys.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
-public class HelloController {
+public class UserController {
+
+
 
 
 }

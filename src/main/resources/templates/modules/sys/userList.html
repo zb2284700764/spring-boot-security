@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>用户列表</title>
+</head>
+
+<body>
+
+    <!-- data-layout-fragment="content" 标签内的内容会替换 layout 页面中 data-layout-fragment="content" 面的内容 -->
+    <div data-layout-fragment="content">
+        <div class="container-fluid">
+
+
+            <span sec:authorize="hasAuthority('BookAdd')">添加</span><br/><br/>
+            <span sec:authorize="hasAuthority('BookDetail')">查看</span><br/><br/>
+            <span sec:authorize="hasAuthority('BookList')">列表</span><br/><br/>
+            <span sec:authorize="hasAuthority('UserIndex')">个人中心</span>
+
+
+
+            <div>
+                <form th:action="@{/a/sys/user/gotoUserForm}" th:method="post">
+                    <button id="addUserBtn" type="submit" class="btn btn-default">增加用户</button>
+                    <button id="ajaxFindAllUser" type="button" class="btn btn-default">ajax 查询用户</button>
+                    <button id="ajaxAddUser" type="button" class="btn btn-default">ajax 增加用户</button>
+                    <button id="sendMessage" type="button" class="btn btn-default">发送消息到 Redis 的消息队列</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- data-layout-fragment="js" 标签内的内容会替换 layout 页面中 data-layout-fragment="js" 的内容 -->
+    <script type="text/javascript" th:inline="javascript" data-layout-fragment="js">
+        $(function () {
+
+
+
+        });
+
+    </script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 package com.example.common;
 
 import com.example.SpringBootSecurityApplication;
-import com.example.module.test.controller.HelloController;
+import com.example.modules.test.controller.HelloController;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = SpringBootSecurityApplication.class)
 @WebAppConfiguration
-public class SpringBootDemoApplicationTests {
+public class SpringBootSecurityApplicationTests {
 
 	private MockMvc mvc;
 

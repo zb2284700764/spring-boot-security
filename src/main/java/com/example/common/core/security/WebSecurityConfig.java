@@ -10,33 +10,53 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity // 开启 Spring Security 功能
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private MyUserDetailsServiceImpl myUserDetailsService;
+    private AccessDeniedHandler accessDeniedHandler;
+
+
+//    @Autowired
+//    private MyUserDetailsServiceImpl myUserDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests() // 定义哪些 URL 需要保护，哪些不需要保护
-                .antMatchers("/", "/index","/login").permitAll()
+        http.csrf().disable()
+                .authorizeRequests()
+                // permitAll 表示这些 url 不需要认证
+                .antMatchers("/", "/index", "/login", "/hiJson").permitAll()
+                // 管理员路径需要有 admin 角色
+                .antMatchers("/admin/**").hasAnyRole("admin")
+                // 用户路径需要有 user 角色
+                .antMatchers("/user/**").hasAnyRole("user")
+                // 其他链接都需要认证
                 .anyRequest().authenticated()
+                .and().formLogin().loginPage("/login").permitAll()
+                .and().logout().permitAll()
+                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+    }
+
+    @Autowired
+    public void configGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("zhangsan").password("zhangsan").roles("user")
                 .and()
-                .formLogin().loginPage("/login").permitAll()
-                .and().logout().permitAll();
+                .withUser("admin").password("admin").roles("admin");
 
-        http.csrf().disable();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
-    }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
+//    }
+//
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 }

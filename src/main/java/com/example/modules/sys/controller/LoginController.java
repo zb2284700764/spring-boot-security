@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  * 后台登录 Controller
  */
-@Controller
+@RestController
 public class LoginController {
 
 
@@ -24,9 +24,6 @@ public class LoginController {
         modelAndView.setViewName("modules/sys/login");
         return modelAndView;
     }
-//    public String toLogin(ModelAndView modelAndView) {
-//        return "modules/sys/login";
-//    }
 
     /**
      * 登录

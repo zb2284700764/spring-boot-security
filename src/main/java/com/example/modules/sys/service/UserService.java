@@ -3,6 +3,7 @@ package com.example.modules.sys.service;
 import com.example.modules.sys.entity.Permission;
 import com.example.modules.sys.entity.Role;
 import com.example.modules.sys.entity.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -42,11 +43,18 @@ public class UserService {
 
 
         User user = new User();
+        user.setUsername(username);
+
         if ("admin".equals(username)) {
             user.setRoleList(Arrays.asList(admin, developer));
         } else {
             user.setRoleList(Collections.singletonList(developer));
         }
+        user.setPassword("123456");
+
+        // 将密码加密
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(bCryptPasswordEncoder.encode("123456"));
 
         return user;
     }

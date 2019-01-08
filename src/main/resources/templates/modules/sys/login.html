@@ -4,17 +4,17 @@
     <title>登录</title>
 
     <!-- CSS Bootstrap -->
-    <link th:href="@{/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/login/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/login/css/form-elements.css}" rel="stylesheet" type="text/css">
-    <link th:href="@{/login/css/style.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/res/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/res/login/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/res/login/css/form-elements.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/res/login/css/style.css}" rel="stylesheet" type="text/css">
 
     <!-- Favicon and touch icons -->
-    <link rel="shortcut icon" th:href="@{/login/ico/favicon.png}">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/login/ico/apple-touch-icon-144-precomposed.png}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/login/ico/apple-touch-icon-114-precomposed.png}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/login/ico/apple-touch-icon-72-precomposed.png}">
-    <link rel="apple-touch-icon-precomposed" th:href="@{/login/ico/apple-touch-icon-57-precomposed.png}">
+    <link rel="shortcut icon" th:href="@{/res/login/ico/favicon.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" th:href="@{/res/login/ico/apple-touch-icon-144-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" th:href="@{/res/login/ico/apple-touch-icon-114-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" th:href="@{/res/login/ico/apple-touch-icon-72-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" th:href="@{/res/login/ico/apple-touch-icon-57-precomposed.png}">
 
 </head>
 
@@ -86,16 +86,16 @@
 
 
     <!-- Jquery -->
-    <script th:src="@{/jquery/3.1.1/jquery.min.js}"></script>
+    <script th:src="@{/res/jquery/3.1.1/jquery.min.js}"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script th:src="@{/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-    <script th:src="@{/login/js/jquery.backstretch.min.js}"></script>
+    <script th:src="@{/res/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <script th:src="@{/res/login/js/jquery.backstretch.min.js}"></script>
 
 
     <script type="text/javascript" th:inline="javascript">
 
         <!-- 背景插件设置图片 -->
-        $.backstretch(/*[[@{/login/img/backgrounds/1.jpg}]]*/);
+        $.backstretch(/*[[@{/res/login/img/backgrounds/1.jpg}]]*/);
 
         $('.login-form input[type="text"], .login-form input[type="password"]').on('focus', function() {
             $(this).removeClass('input-error');

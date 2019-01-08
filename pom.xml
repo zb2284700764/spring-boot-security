@@ -48,6 +48,7 @@
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
 
+
         <!-- 工具类 -->
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -56,10 +57,12 @@
         </dependency>
 
         <!-- Actuator 监控模块 -->
+<!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+-->
 
 
         <dependency>

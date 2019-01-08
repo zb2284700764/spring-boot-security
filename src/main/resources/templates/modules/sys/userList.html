@@ -18,15 +18,6 @@
             <span sec:authorize="hasAuthority('UserIndex')">个人中心</span>
 
 
-
-            <div>
-                <form th:action="@{/a/sys/user/gotoUserForm}" th:method="post">
-                    <button id="addUserBtn" type="submit" class="btn btn-default">增加用户</button>
-                    <button id="ajaxFindAllUser" type="button" class="btn btn-default">ajax 查询用户</button>
-                    <button id="ajaxAddUser" type="button" class="btn btn-default">ajax 增加用户</button>
-                    <button id="sendMessage" type="button" class="btn btn-default">发送消息到 Redis 的消息队列</button>
-                </form>
-            </div>
         </div>
     </div>
 

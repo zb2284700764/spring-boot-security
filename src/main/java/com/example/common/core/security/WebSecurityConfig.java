@@ -2,6 +2,7 @@ package com.example.common.core.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
@@ -19,11 +21,24 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @EnableGlobalMethodSecurity(prePostEnabled = true) //开启security注解
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private AccessDeniedHandler accessDeniedHandler;
+//    @Autowired
+//    private AccessDeniedHandler accessDeniedHandler;
 
     @Autowired
     private MyUserDetailsServiceImpl myUserDetailsService;
+
+
+    @Autowired
+    @Qualifier("authenticationSuccessHandler")
+    private AuthenticationSuccessHandler successHandler;
+
+    @Autowired
+    @Qualifier("authenticationFailHandler")
+    private AuthenticationFailHandler failHandler;
+
+    @Autowired
+    @Qualifier("authenticationEntryPointImpl")
+    private AuthenticationEntryPoint entryPoint;
 
 
     @Override
@@ -31,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 // permitAll 表示这些 url 不需要认证
-                .antMatchers("/", "/index", "/login", "/hiJson","/res/**").permitAll()
+                .antMatchers("/", "/index", "/login", "/hiJson", "/res/**").permitAll()
                 // 管理员路径需要有 admin 角色
                 .antMatchers("/admin/**").hasAnyRole("admin")
                 // 用户路径需要有 user 角色
@@ -39,9 +54,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 其他链接都需要认证
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/login").permitAll()
-
+                .successForwardUrl("/index")
+//                .and().formLogin().loginProcessingUrl("/login")
+//                .successHandler(successHandler)
+//                .failureHandler(failHandler)
                 .and().logout().permitAll()
-                .and().exceptionHandling().accessDeniedHandler(accessDeniedHandler);
+                .and().exceptionHandling().authenticationEntryPoint(entryPoint);
+
     }
 
 
@@ -49,10 +68,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String password = bCryptPasswordEncoder.encode("123456");
+
+        password = "123456";
+
         auth.inMemoryAuthentication()
-                .withUser("zhangsan").password("123456").roles("user")
+                .withUser("zhangsan").password(password).roles("user")
                 .and()
-                .withUser("admin").password("123456").roles("admin");
+                .withUser("admin").password(password).roles("admin");
 
     }
 

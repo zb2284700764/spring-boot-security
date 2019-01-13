@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      data-layout-decorator="common/layout/layout">
 <head>
     <title>用户列表</title>
 </head>
@@ -11,13 +12,14 @@
     <div data-layout-fragment="content">
         <div class="container-fluid">
 
-
-            <span sec:authorize="hasAuthority('BookAdd')">添加</span><br/><br/>
-            <span sec:authorize="hasAuthority('BookDetail')">查看</span><br/><br/>
-            <span sec:authorize="hasAuthority('BookList')">列表</span><br/><br/>
-            <span sec:authorize="hasAuthority('UserIndex')">个人中心</span>
+            <span sec:authorize="hasRole('admin')">管理员<br/><br/></span>
+            <span sec:authorize="hasRole('user')">用户<br/><br/></span>
 
 
+            <span sec:authorize="hasAuthority('BookDetail')">查看图书<br/><br/></span>
+            <span sec:authorize="hasAuthority('BookAdd')">添加图书<br/><br/></span>
+            <span sec:authorize="hasAuthority('BookList')">图书列表<br/><br/></span>
+            <span sec:authorize="hasAuthority('UserIndex')">个人中心<br/><br/></span>
         </div>
     </div>
 

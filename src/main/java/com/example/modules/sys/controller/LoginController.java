@@ -1,6 +1,8 @@
 package com.example.modules.sys.controller;
 
+import com.example.modules.sys.entity.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,21 +27,28 @@ public class LoginController {
         return modelAndView;
     }
 
-    /**
-     * 登录
-     *
-     * @return
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(ModelAndView modelAndView, String username, String password) {
-
-        modelAndView.setViewName("modules/sys/userList");
-        return modelAndView;
-    }
+//    /**
+//     * 登录
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public ModelAndView login(ModelAndView modelAndView, String username, String password) {
+//
+//        modelAndView.setViewName("modules/sys/userList");
+//        return modelAndView;
+//    }
 
 
     @RequestMapping("/index")
-    public ModelAndView defaultIndex(ModelAndView modelAndView) {
+    public ModelAndView defaultIndex(ModelAndView modelAndView, Model model) {
+
+        // 为了在 layout.html 中获取用户名
+        User user = new User();
+        user.setUsername("张三");
+        model.addAttribute("user", user);
+
+
         modelAndView.setViewName("modules/index");
         return modelAndView;
     }

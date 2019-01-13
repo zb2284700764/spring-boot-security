@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * 登录失败调用处理的 handler
+ * 暂时还没用
  */
 @Service("authenticationFailHandler")
 public class AuthenticationFailHandler extends SimpleUrlAuthenticationFailureHandler {

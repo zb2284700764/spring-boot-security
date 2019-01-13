@@ -36,9 +36,13 @@ public class UserService {
         p4.setUrl("/book/detail");
 
         Role admin = new Role();
+        admin.setName("超级管理员");
+        admin.setCode("admin");
         admin.setPermissionList(Arrays.asList(p1, p2, p3, p4));
 
         Role developer = new Role();
+        developer.setName("用户");
+        developer.setCode("user");
         developer.setPermissionList(Arrays.asList(p1, p2));
 
 
@@ -46,15 +50,15 @@ public class UserService {
         user.setUsername(username);
 
         if ("admin".equals(username)) {
-            user.setRoleList(Arrays.asList(admin, developer));
+            user.setRoleList(Arrays.asList(admin));
         } else {
             user.setRoleList(Collections.singletonList(developer));
         }
         user.setPassword("123456");
 
-        // 将密码加密
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        user.setPassword(bCryptPasswordEncoder.encode("123456"));
+//        // 从数据库查询出来的密码  这里加密明文密码来模拟从数据库查询出来的密码
+//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//        user.setPassword(bCryptPasswordEncoder.encode("123456"));
 
         return user;
     }

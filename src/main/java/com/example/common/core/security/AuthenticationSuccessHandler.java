@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * 登录成功之后处理的 handler
+ * 暂时还没用
  */
 @Service("authenticationSuccessHandler")
 public class AuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {

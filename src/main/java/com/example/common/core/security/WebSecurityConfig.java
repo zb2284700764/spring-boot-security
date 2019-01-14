@@ -64,18 +64,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // 设置密码的加密策略 默认是 BCryptPasswordEncoder
-//        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(new BCryptPasswordEncoder());
 
         // 从内存加载用户
-        BCryptPasswordEncoder bCryptPasswordEncoder =  new BCryptPasswordEncoder();
-        String password = bCryptPasswordEncoder.encode("123456");
-        auth.inMemoryAuthentication()
-                .passwordEncoder(bCryptPasswordEncoder)
-                .withUser("zhangsan").password(password).roles("user")
-//                .authorities("BookAdd","BookList")
-                .and()
-                .withUser("admin").password(password).roles("admin")
-//                .authorities("BookAdd","BookList","BookDetail","UserIndex")
+//        BCryptPasswordEncoder bCryptPasswordEncoder =  new BCryptPasswordEncoder();
+//        String password = bCryptPasswordEncoder.encode("123456");
+//        auth.inMemoryAuthentication()
+//                .passwordEncoder(bCryptPasswordEncoder)
+//                .withUser("zhangsan").password(password).roles("user")
+////                .authorities("BookAdd","BookList")
+//                .and()
+//                .withUser("admin").password(password).roles("admin")
+////                .authorities("BookAdd","BookList","BookDetail","UserIndex")
         ;
     }
 

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -253,7 +255,10 @@
                         <li>
                             <a href="javascript:void(0);"><i class="fa fa-bar-chart-o fa-fw"></i> 系统管理<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li>
+                                <li sec:authorize="hasRole('admin')">
+                                    <a th:href="@{/admin/userList}">管理员</a>
+                                </li>
+                                <li sec:authorize="hasRole('user')">
                                     <a th:href="@{/user/userList}">用户管理</a>
                                 </li>
                                 <li>

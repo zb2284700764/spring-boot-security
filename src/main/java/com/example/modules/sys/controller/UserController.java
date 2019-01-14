@@ -15,4 +15,10 @@ public class UserController {
         return modelAndView;
     }
 
+    @RequestMapping("/admin/userList")
+    public ModelAndView adminList(ModelAndView modelAndView) {
+
+        modelAndView.setViewName("modules/sys/userList");
+        return modelAndView;
+    }
 }

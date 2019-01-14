@@ -54,11 +54,11 @@ public class UserService {
         } else {
             user.setRoleList(Collections.singletonList(developer));
         }
-        user.setPassword("123456");
+//        user.setPassword("123456");
 
-//        // 从数据库查询出来的密码  这里加密明文密码来模拟从数据库查询出来的密码
-//        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-//        user.setPassword(bCryptPasswordEncoder.encode("123456"));
+        // 从数据库查询出来的密码  这里加密明文密码来模拟从数据库查询出来的密码
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(bCryptPasswordEncoder.encode("123456"));
 
         return user;
     }

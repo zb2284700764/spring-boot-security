@@ -21,4 +21,19 @@ public class UserController {
         modelAndView.setViewName("modules/sys/userList");
         return modelAndView;
     }
+
+
+    @RequestMapping("/user/toUser")
+    public ModelAndView toUser(ModelAndView modelAndView) {
+
+        modelAndView.setViewName("modules/sys/userDetail");
+        return modelAndView;
+    }
+
+    @RequestMapping("/admin/toAdmin")
+    public ModelAndView toAdmin(ModelAndView modelAndView) {
+
+        modelAndView.setViewName("modules/sys/userDetail");
+        return modelAndView;
+    }
 }

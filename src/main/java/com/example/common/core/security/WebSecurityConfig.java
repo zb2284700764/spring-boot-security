@@ -39,13 +39,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("authenticationEntryPointImpl")
     private AuthenticationEntryPointImpl entryPoint;
 
+    @Autowired
+    @Qualifier("accessDeniedHandlerImpl")
+    private AccessDeniedHandlerImpl deniedHandler;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
                 // permitAll 表示这些 url 不需要认证
-                .antMatchers("/test/**", "/res/**").permitAll()
+                .antMatchers("/common/**","/test/**", "/res/**").permitAll()
                 .antMatchers("/user/**").hasAnyRole("user")
                 .antMatchers("/admin/**").hasAnyRole("admin")
                 // 其他链接都需要认证
@@ -56,6 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .successHandler(successHandler)
 //                .failureHandler(failHandler)
                 .and().logout().permitAll()
+                .and().exceptionHandling().accessDeniedHandler(deniedHandler)
                 .and().exceptionHandling().authenticationEntryPoint(entryPoint);
 
     }

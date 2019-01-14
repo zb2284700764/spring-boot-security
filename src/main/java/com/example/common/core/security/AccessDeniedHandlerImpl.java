@@ -33,7 +33,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
         }
 
         // 访问异常的时候转到首页
-        response.sendRedirect(request.getContextPath()+"/index");
+        response.sendRedirect(request.getContextPath()+"/common/error/403");
 
     }
 

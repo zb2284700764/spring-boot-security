@@ -16,9 +16,12 @@ import java.io.IOException;
 @Service("authenticationEntryPointImpl")
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
     @Override
-    public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
 
         // 401 未授权
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED,e.getMessage());
+//        response.sendError(HttpServletResponse.SC_UNAUTHORIZED,e.getMessage());
+
+        // 没有登录就跳转到登录页
+        response.sendRedirect(request.getContextPath()+"/login");
     }
 }

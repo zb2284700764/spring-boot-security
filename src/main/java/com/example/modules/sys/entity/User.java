@@ -1,30 +1,26 @@
 package com.example.modules.sys.entity;
 
+import com.example.common.persistence.DataEntity;
 import com.google.common.collect.Lists;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
-public class User implements UserDetails {
+public class User extends DataEntity<User> implements UserDetails {
+
+    private static final long serialVersionUID = 1L;
 
     // 登录名
     private String username;
-    // 密码
     private String password;
+    private String name;
+    private String loginFlag;
+    private Date lastLoginTime;
 
-    private List<Role> roleList;
-
-
-    public List<Role> getRoleList() {
-        return roleList;
-    }
-
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
-    }
 
     @Override
     public String getUsername() {
@@ -59,16 +55,16 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         List<SimpleGrantedAuthority> authorities = Lists.newArrayList();
-        for (Role role : this.getRoleList()) {
-
-            // 角色权限
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getCode()));
-
-            // 具体功能权限
-            for (Permission permission : role.getPermissionList()) {
-                authorities.add(new SimpleGrantedAuthority("ROLE_" + permission.getCode()));
-            }
-        }
+//        for (Role role : this.getRoleList()) {
+//
+//            // 角色权限
+//            authorities.add(new SimpleGrantedAuthority(role.getCode()));
+//
+//            // 具体功能权限
+//            for (Permission permission : role.getPermissionList()) {
+//                authorities.add(new SimpleGrantedAuthority(permission.getCode()));
+//            }
+//        }
 
         return authorities;
     }
@@ -83,4 +79,27 @@ public class User implements UserDetails {
     }
 
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLoginFlag() {
+        return loginFlag;
+    }
+
+    public void setLoginFlag(String loginFlag) {
+        this.loginFlag = loginFlag;
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
 }

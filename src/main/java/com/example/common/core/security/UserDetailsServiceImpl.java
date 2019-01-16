@@ -1,18 +1,12 @@
 package com.example.common.core.security;
 
-import com.example.modules.sys.entity.Permission;
-import com.example.modules.sys.entity.Role;
 import com.example.modules.sys.entity.User;
 import com.example.modules.sys.service.UserService;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * 用于加载特定用户信息的，它只有一个接口通过指定的用户名去查询用户
@@ -32,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.getUserByusername(username);
+        User user = userService.getUserByUsername(username);
         if (null == user) {
             throw new UsernameNotFoundException(username);
         }

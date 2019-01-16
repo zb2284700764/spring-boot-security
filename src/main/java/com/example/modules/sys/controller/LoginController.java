@@ -27,17 +27,6 @@ public class LoginController {
         return modelAndView;
     }
 
-//    /**
-//     * 登录
-//     *
-//     * @return
-//     */
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public ModelAndView login(ModelAndView modelAndView, String username, String password) {
-//
-//        modelAndView.setViewName("modules/sys/userList");
-//        return modelAndView;
-//    }
 
 
     @RequestMapping("/index")
@@ -52,6 +41,10 @@ public class LoginController {
         modelAndView.setViewName("modules/index");
         return modelAndView;
     }
+
+
+
+
 
 }
 

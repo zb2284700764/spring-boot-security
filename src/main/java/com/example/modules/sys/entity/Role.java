@@ -1,23 +1,14 @@
 package com.example.modules.sys.entity;
 
-import java.util.List;
 
-public class Role {
+import com.example.common.persistence.DataEntity;
 
-    // 角色 code
-    private String code;
-    // 角色名
-    private String name;
+public class Role extends DataEntity<Role> {
 
-    private List<Permission> permissionList;
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
+    private String name;    // 角色名称
+    private String enname;    // 英文名称
+    private String roleType;// 权限类型
+    private String useable;        //是否是可用
 
     public String getName() {
         return name;
@@ -27,11 +18,27 @@ public class Role {
         this.name = name;
     }
 
-    public List<Permission> getPermissionList() {
-        return permissionList;
+    public String getEnname() {
+        return enname;
     }
 
-    public void setPermissionList(List<Permission> permissionList) {
-        this.permissionList = permissionList;
+    public void setEnname(String enname) {
+        this.enname = enname;
+    }
+
+    public String getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(String roleType) {
+        this.roleType = roleType;
+    }
+
+    public String getUseable() {
+        return useable;
+    }
+
+    public void setUseable(String useable) {
+        this.useable = useable;
     }
 }

@@ -15,7 +15,6 @@ import java.io.IOException;
 
 /**
  * 用来解决认证过的用户访问无权限资源时的异常
- * 暂时还没用
  */
 @Component
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {

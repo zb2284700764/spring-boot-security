@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      data-layout-decorator="common/layout/layout">
+<head>
+    <title>用户列表</title>
+</head>
+
+<body>
+
+    <!-- data-layout-fragment="content" 标签内的内容会替换 layout 页面中 data-layout-fragment="content" 面的内容 -->
+    <div data-layout-fragment="content">
+        <div class="container-fluid">
+
+            您是:
+            <span sec:authorize="hasRole('admin')">管理员</span>
+            <span sec:authorize="hasRole('user')">用户</span>
+        </div>
+    </div>
+
+    <!-- data-layout-fragment="js" 标签内的内容会替换 layout 页面中 data-layout-fragment="js" 的内容 -->
+    <script type="text/javascript" th:inline="javascript" data-layout-fragment="js">
+        $(function () {
+
+
+
+        });
+
+    </script>
+</body>
+</html>

@@ -1,20 +1,29 @@
 package com.example.common.controller;
 
+import com.example.modules.sys.entity.Menu;
+import com.example.modules.sys.entity.User;
+import com.example.modules.sys.service.MenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 控制器父类
  */
 public abstract class BaseController {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
+    protected static final Logger LOGGER = LoggerFactory.getLogger(BaseController.class);
 
+    @Autowired
+    protected MenuService menuService;
 
     /**
      * 管理基础路径
@@ -39,4 +48,23 @@ public abstract class BaseController {
         return modelAndView;
     }
 
+
+
+    /**
+     * 查询菜单, 每次请求都会查询一次
+     * @param modelAndView 在当前 controller 里面只存放菜单数据
+     * @return 菜单数据
+     */
+    @ModelAttribute
+    public ModelAndView initMenu(ModelAndView modelAndView) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (user != null) {
+            modelAndView.addObject("user", user);
+            List<Menu> menuList = menuService.findMenuByUserId(user.getId());
+            if (menuList != null) {
+                modelAndView.addObject("menuList",menuList);
+            }
+        }
+        return modelAndView;
+    }
 }

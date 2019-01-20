@@ -15,8 +15,24 @@ import java.util.List;
 @RequestMapping("${adminPath}/sys/user")
 public class UserController extends BaseController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+
+    @RequestMapping("/index")
+    public ModelAndView userList(ModelAndView modelAndView) {
+
+        modelAndView.setViewName("modules/index");
+        return modelAndView;
+    }
+
+
+
+
 
     /**
      * 增加用户
@@ -38,7 +54,6 @@ public class UserController extends BaseController {
      *
      * @date 2017年9月19日 下午2:20:59
      */
-//    @RequiresPermissions("sys:user:edit")
     @RequestMapping("/gotoUserForm")
     public ModelAndView gotoUserForm(ModelAndView modelAndView) {
 

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+      >
+<head>
+    <title>首页</title>
+</head>
+<body>
+
+    <!-- data-layout-fragment="content" 标签之外的内容就是layout.html的内容，这个标签之内的部分不会被替换 -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Dashboard</h1>
+            </div>
+        </div>
+
+        <a th:href="@{/login}">登录</a>
+
+
+
+</body>
+</html>

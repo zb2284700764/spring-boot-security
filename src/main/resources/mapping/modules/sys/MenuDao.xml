@@ -79,9 +79,9 @@
     </insert>
 
 
-
+    <!-- 查询用户对应的菜单 -->
     <select id="findMenuByUserId" resultType="Menu">
-        select
+        select DISTINCT
         <include refid="menuColumns" />
         from sys_menu a
         left join sys_role_menu srm on a.id = srm.menu_id

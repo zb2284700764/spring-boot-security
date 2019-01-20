@@ -1,12 +1,20 @@
 package com.example.common.core.security;
 
+import com.example.modules.sys.entity.Menu;
+import com.example.modules.sys.entity.Role;
 import com.example.modules.sys.entity.User;
+import com.example.modules.sys.service.MenuService;
+import com.example.modules.sys.service.RoleService;
 import com.example.modules.sys.service.UserService;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * 用于加载特定用户信息的，它只有一个接口通过指定的用户名去查询用户
@@ -16,6 +24,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
+    @Autowired
+    private MenuService menuService;
 
 
     /**
@@ -31,23 +43,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
+        // 角色、权限集合
+        List<SimpleGrantedAuthority> authorities = Lists.newArrayList();
 
+        // 角色
+        List<Role> roleList = roleService.findRoleByUserId(user.getId());
+        for (Role role : roleList) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleType()));
+        }
 
-//        List<SimpleGrantedAuthority> authorities = Lists.newArrayList();
-//        for (Role role : user.getRoleList()) {
-//            // 角色权限
-//            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getCode()));
-//            // 具体功能权限
-//            for (Permission permission : role.getPermissionList()) {
-//                authorities.add(new SimpleGrantedAuthority("ROLE_" + permission.getCode()));
-//            }
-//        }
-//
-//
-//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
-        return user;
+        List<Menu> menuList = menuService.findMenuByUserId(user.getId());
+        // 菜单
+        for (Menu menu: menuList) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + menu.getPermission()));
+        }
+
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
-
-
 
 }

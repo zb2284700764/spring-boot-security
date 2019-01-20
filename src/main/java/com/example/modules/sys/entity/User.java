@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-public class User extends DataEntity<User> implements UserDetails {
+public class User extends DataEntity<User>{
 
     private static final long serialVersionUID = 1L;
 
@@ -21,55 +21,18 @@ public class User extends DataEntity<User> implements UserDetails {
     private String loginFlag;
     private Date lastLoginTime;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
-    @Override
     public String getUsername() {
         return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        List<SimpleGrantedAuthority> authorities = Lists.newArrayList();
-//        for (Role role : this.getRoleList()) {
-//
-//            // 角色权限
-//            authorities.add(new SimpleGrantedAuthority(role.getCode()));
-//
-//            // 具体功能权限
-//            for (Permission permission : role.getPermissionList()) {
-//                authorities.add(new SimpleGrantedAuthority(permission.getCode()));
-//            }
-//        }
-
-        return authorities;
-    }
-
-    @Override
     public String getPassword() {
         return password;
     }
@@ -77,7 +40,6 @@ public class User extends DataEntity<User> implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getName() {
         return name;

@@ -128,13 +128,11 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'zhoubin', '74dfcefa8cf9a5fd7eae4552cc1b47546ee7b9b74fb3c78a71eb061a', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_user` VALUES ('2', 'zhangsan', '7c04e848ae0659ea503f16039ecdc4fb1eea895a1cb3a0162bc12fc4', '张三', '1', NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_user` VALUES ('3', 'lisi', '96aaabcd7900f80edb79b77c01fba62b6ceb0a3e69823ea40e5315b0', '李四', '1', NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_user` VALUES ('4', 'wangwu', 'f4a068c8df644fa23614d51b1c1bd22fe0951ba64d1045e54270da2f', '王五', '1', NULL, NULL, NULL, NULL, NULL, NULL, '0');
-INSERT INTO `sys_user` VALUES ('5', '张三', '张三', '张三', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_user` VALUES ('6', '张三', '张三', '张三', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `sys_user` VALUES ('7', '张三', '张三', '张三', '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES ('1', 'zhoubin', '$2a$10$hMtsnFuKO.wUc7cWIeYsYeqUKVh.OqNN6N/Ev4xdsvLQTZhjr9bf2', NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, '0');
+INSERT INTO `sys_user` VALUES ('2', 'zhangsan', '$2a$10$hMtsnFuKO.wUc7cWIeYsYeqUKVh.OqNN6N/Ev4xdsvLQTZhjr9bf2', '张三', '1', NULL, NULL, NULL, NULL, NULL, NULL, '0');
+INSERT INTO `sys_user` VALUES ('3', 'lisi', '$2a$10$hMtsnFuKO.wUc7cWIeYsYeqUKVh.OqNN6N/Ev4xdsvLQTZhjr9bf2', '李四', '1', NULL, NULL, NULL, NULL, NULL, NULL, '0');
+INSERT INTO `sys_user` VALUES ('4', 'wangwu', '$2a$10$hMtsnFuKO.wUc7cWIeYsYeqUKVh.OqNN6N/Ev4xdsvLQTZhjr9bf2', '王五', '1', NULL, NULL, NULL, NULL, NULL, NULL, '0');
+
 
 -- ----------------------------
 -- Table structure for sys_user_role
